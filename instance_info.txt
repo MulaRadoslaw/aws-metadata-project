@@ -1,0 +1,10 @@
+=== AWS EC2 INSTANCE METADATA ===
+Instance ID: i-0048910f9db0ebf68
+Public IP: 35.159.228.25
+Private IP: 172.31.25.18
+Security Groups: lcloud-vpn-sg
+candidate-sg
+
+=== SYSTEM INFORMATION ===
+OS Name: Ubuntu 24.04.4 LTS
+Active Shell Users: root ubuntu

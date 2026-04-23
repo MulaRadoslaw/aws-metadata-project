@@ -1,10 +1,10 @@
-
+#!/bin/bash
 set -euo pipefail
 
 # Configuration
 OUTPUT_FILE="instance_info.txt"
 S3_URI="s3://applicant-task/instance-105"
-METADATA_URL="http://169.254.169.254"
+METADATA_URL="http://169.254.169.254/latest"
 
 # 1. Get Session Token for security (IMDSv2)
 TOKEN=$(curl -s -X PUT "$METADATA_URL/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
@@ -23,3 +23,9 @@ TOKEN=$(curl -s -X PUT "$METADATA_URL/api/token" -H "X-aws-ec2-metadata-token-tt
 } > "$OUTPUT_FILE"
 
 echo "Data collection complete. Results saved in: $OUTPUT_FILE"
+
+# 3. Upload to S3
+echo "Uploading report to S3..."
+aws s3 cp "$OUTPUT_FILE" "$S3_URI/$OUTPUT_FILE"
+
+echo "Task completed successfully!"
